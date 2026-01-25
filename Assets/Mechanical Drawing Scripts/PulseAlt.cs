@@ -1,0 +1,35 @@
+using UnityEngine;
+
+public class PulseAlt : MonoBehaviour
+{
+    //Public AnimationCurve to show and modify in inspector
+    public AnimationCurve curve;
+    //Public value for Time
+    public float t;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // using delta time to establish the time value in seconds
+        t += Time.deltaTime;
+
+        // 5 second period instead of 1 for the animation
+        if (t > 5)
+        {
+            // resets timer t
+            t = 0;
+        }
+        //Float affected by the Animation Curve
+        float y = curve.Evaluate(t);
+        //Constanly changes the scale of the obeject based on the Animation Curve
+        transform.localScale = Vector3.one * y;
+
+        //code based on the pulse example from class
+    }
+}
